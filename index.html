@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hot gadget</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/daisyui@3.6.2/dist/full.css" rel="stylesheet" type="text/css" />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@200;400;500;600;700;800&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="./css/style.css">
+
+</head>
+
+<body>
+    <header class="container mx-auto">
+        <div class="navbar bg-base-100">
+            <div class="flex-1">
+                <a class="normal-case text-xl">Hot gadget</a>
+            </div>
+
+            <div class="navbar-end">
+                <a class="btn">sign up</a>
+            </div>
+        </div>
+    </header>
+    <main class="container mx-auto py-5">
+        <div class="text-center">
+            <h1 class="text-4xl my-5 font-bold">Search your phone</h1>
+            <div>
+                <input id="searchPhone" type="text" placeholder="Search your phone"
+                    class="input input-bordered w-full max-w-xs" />
+                <button onclick="handleSearch()" class="btn btn-neutral">search</button>
+            </div>
+        </div>
+
+
+        <div id="card-container" class="grid gap-6 grid-cols-1 md:grid-cols-2 lg:grid-cols-3"> </div>
+        <div id="show-all-container" class="text-center hidden my-10">
+            <button onclick="showAllPhones()" class="btn btn-active btn-success">show more</button>
+        </div>
+
+        <div id="modal-container">
+            <dialog id="show_more" class="modal">
+                <form method="dialog" class="modal-box">
+                    <div id="modalBox-container"> </div>
+
+                    <div class="modal-action">
+                        <button class="btn">Close</button>
+                    </div>
+                </form>
+            </dialog>
+
+        </div>
+    </main>
+    <footer>
+
+    </footer>
+
+    <script src="./js/app.js"></script>
+</body>
+
+</html>
