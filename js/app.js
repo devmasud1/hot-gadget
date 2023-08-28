@@ -1,5 +1,4 @@
 const findDetails = async (searchByUserPhone = "13", isShowAll) => {
-  console.log(typeof isShowAll);
   const url = await fetch(
     `https://openapi.programming-hero.com/api/phones?search=${searchByUserPhone}`
   );
@@ -19,19 +18,14 @@ const displayApiData = (phones, isShowAll) => {
   } else {
     showAllContainer.classList.add("hidden");
   }
-  console.log("is show all", isShowAll);
 
-  // if (!isShowAll) {
-  //   phones = phones.slice(0, 12);
-  // }
   if (!isShowAll) {
     phones = phones.slice(0, 12);
   }
 
   phones.forEach((phone) => {
     const { phone_name, image, slug } = phone;
-    // console.log(slug)
-
+   
     const phoneCard = document.createElement("div");
     phoneCard.innerHTML = `
         <div class="card bg-base-100 shadow-xl">
@@ -44,34 +38,28 @@ const displayApiData = (phones, isShowAll) => {
                   passages of available, but the <br/>
                   majority have suffered</p>
                 <div class="card-actions">
-                    <button onclick="showDetails('${slug}')" class="btn btn-primary">show details</button>
+                    <button onclick="showDetails('${slug}')" class="btn btn-success">show details</button>
                 </div>
             </div>
          </div>
     `;
     cardContainer.appendChild(phoneCard);
   });
-  // searchPhone.value ='';
 };
 
 const handleSearch = (isShowAll) => {
   const searchPhone = document.getElementById("searchPhone");
   const searchByUserPhone = searchPhone.value;
 
-  //console.log(phones)
-
   findDetails(searchByUserPhone, isShowAll, searchPhone);
-  // searchPhone.value = "";
 };
 
 const showAllPhones = () => {
   handleSearch(true);
 };
 
-// findDetails();
 
 const showDetails = async (id) => {
-  console.log(id);
   const res = await fetch(
     `https://openapi.programming-hero.com/api/phone/${id}`
   );
