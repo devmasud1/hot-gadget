@@ -1,9 +1,10 @@
-const findDetails = async (searchByUserPhone = "13", isShowAll) => {
+const findDetails = async (searchByUserPhone='10' , isShowAll) => {
   const url = await fetch(
     `https://openapi.programming-hero.com/api/phones?search=${searchByUserPhone}`
   );
   const result = await url.json();
   const phones = result.data;
+  console.log(phones)
 
   displayApiData(phones, isShowAll);
 };
