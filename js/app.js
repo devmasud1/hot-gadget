@@ -21,7 +21,7 @@ const displayApiData = (phones, isShowAll) => {
   if (!isShowAll) {
     phones = phones.slice(0, 12);
   }
-  
+
   const noAvailable = document.getElementById("no-available");
   if (phones.length === 0) {
     noAvailable.classList.remove("hidden");
@@ -111,4 +111,4 @@ const showDetails = async (id) => {
   `;
 };
 
-findDetails();
+ findDetails();
