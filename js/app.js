@@ -1,11 +1,9 @@
-const findDetails = async (searchByUserPhone='10' , isShowAll) => {
+const findDetails = async (searchByUserPhone = "10", isShowAll) => {
   const url = await fetch(
     `https://openapi.programming-hero.com/api/phones?search=${searchByUserPhone}`
   );
   const result = await url.json();
   const phones = result.data;
-  console.log(phones)
-
   displayApiData(phones, isShowAll);
 };
 
@@ -23,10 +21,17 @@ const displayApiData = (phones, isShowAll) => {
   if (!isShowAll) {
     phones = phones.slice(0, 12);
   }
+  
+  const noAvailable = document.getElementById("no-available");
+  if (phones.length === 0) {
+    noAvailable.classList.remove("hidden");
+  } else {
+    noAvailable.classList.add("hidden");
+  }
 
   phones.forEach((phone) => {
     const { phone_name, image, slug } = phone;
-   
+
     const phoneCard = document.createElement("div");
     phoneCard.innerHTML = `
         <div class="card bg-base-100 shadow-xl">
@@ -46,9 +51,11 @@ const displayApiData = (phones, isShowAll) => {
     `;
     cardContainer.appendChild(phoneCard);
   });
+  handleLoading(false);
 };
 
 const handleSearch = (isShowAll) => {
+  handleLoading(true);
   const searchPhone = document.getElementById("searchPhone");
   const searchByUserPhone = searchPhone.value;
 
@@ -59,6 +66,14 @@ const showAllPhones = () => {
   handleSearch(true);
 };
 
+const handleLoading = (loading) => {
+  const loadingSpinner = document.getElementById("loading-spinner");
+  if (loading === true) {
+    loadingSpinner.classList.remove("hidden");
+  } else {
+    loadingSpinner.classList.add("hidden");
+  }
+};
 
 const showDetails = async (id) => {
   const res = await fetch(
@@ -90,8 +105,7 @@ const showDetails = async (id) => {
                  <p><strong>Slug :</strong> ${slug} </p>
                  <p><strong>Release data :</strong> ${releaseDate} </p>
                  <p><strong>Brand:</strong> ${brand} </p>
-                 <p><strong>GPS :</strong> ${phoneDetails.others.GPS} </p>
-                  
+                 <p><strong>GPS :</strong> ${phoneDetails.others.GPS} </p>    
             </div>
            </div>
   `;
